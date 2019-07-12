@@ -19,7 +19,7 @@ echo "ARGS = $*"
 
 # create .prm for processing from CLA
 # save remaing arugments for .mrc and .fcsv files for remaining files
-ARGS=$((python prm.py template.prm \
+ARGS=$((python prm.py \
     --fnVolume "{'${PREFIX}.mrc'}" \
     --fnModParticle "{'${PREFIX}.mod'}" \
     --fnOutput "'${PREFIX}'" \

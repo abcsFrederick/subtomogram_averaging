@@ -7,6 +7,7 @@ sbatch \
     --mem=4g \
     --time=1440 \
     submit_peet.sh \
+        --template=template.prm \
         --initMOTL=3 \
         --dPhi='\{-180:10:180,-30:5:30,-15:3:15,-7.5:1:7.5\}' \
         --dTheta='\{0:1:0,-30:5:30,-15:3:15,-7.5:1:7.5\}' \
