@@ -4,7 +4,18 @@ PREFIX="${SLURM_JOB_ID:-$(date +%s.%N)}"
 N_PROC="${SLURM_CPUS_PER_TASK:-1}"
 
 [ -d "/lscratch/${SLURM_JOB_ID}" ] && export TMPDIR="/lscratch/${SLURM_JOB_ID}"
+
+if [[ -z "${TMPDIR}" ]]; then
+    echo "no TMPDIR set"
+    exit 1
+fi
+
 mkdir -p "${TMPDIR}/${PREFIX}"
+
+if [[ ! -w "${TMPDIR}/${PREFIX}" ]]; then
+    echo "${TMPDIR}/${PREFIX} not writable"
+    exit 1
+fi
 
 echo "using directory ${TMPDIR}/${PREFIX}"
 echo
@@ -12,9 +23,6 @@ echo
 module load PEET
 module load python/3.6
 
-echo "1 = $1"
-echo "2 = $2"
-echo "3 = $3"
 echo "ARGS = $*"
 
 # create .prm for processing from CLA
