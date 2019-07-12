@@ -36,27 +36,21 @@ if __name__ == '__main__':
 
 
     parser = argparse.ArgumentParser(add_help=False)
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-t', '--template')
-    group.add_argument('template_file', nargs='?')
+    parser.add_argument('-t', '--template', required=True)
     args, argv = parser.parse_known_args()
-    template = args.template or args.template_file
-    if not template:
+    if not args.template:
         parser.print_usage()
         sys.exit(2)
 
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-t', '--template')
-    group.add_argument('template_file', nargs='?')
+    parser.add_argument('-t', '--template')
     parser.add_argument('--output-unused-arguments', action='store_true')
-    parser = add_arguments(parser, template)
+    parser = add_arguments(parser, args.template)
     args, argv = parser.parse_known_args()
     if args.output_unused_arguments:
         print(' '.join(argv), file=sys.stderr)
 
     del args.template
-    del args.template_file
     del args.output_unused_arguments
 
     output_arguments(args)
