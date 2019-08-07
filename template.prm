@@ -231,3 +231,7 @@ maskBlurStdDev = NaN
 # separated by a dash ('-') and, optionally, follwed by a suffix, will 
 # be considered a template.
 flgVolNamesAreTemplates = 0
+
+# excludeList: A list of indices of particles to be ignored in computing
+# averages and references.
+excludeList = []
