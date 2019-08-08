@@ -48,6 +48,7 @@ pushd .
 cd "${TMPDIR}/${PREFIX}"
 prmParser "${PREFIX}.prm"
 processchunks -g "localhost:${N_PROC}" "${PREFIX}"
+assemble.sh
 popd
 
 cp -r "${TMPDIR}/${PREFIX}" "PEET-${PREFIX}"
